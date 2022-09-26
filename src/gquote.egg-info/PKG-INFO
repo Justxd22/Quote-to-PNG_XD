@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: gquote
+Version: 1.0.0
+Summary: Generate Beautiful quote images
+Home-page: https://github.com/justxd22/gquote
+Author: Justxd22
+Author-email: xdjust18@gmail.com
+License: GPLV3
+Project-URL: Github, https://github.com/justxd22/gquote
+Keywords: quotes,png,images,pillow,generate
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU GENERAL PUBLIC LICENSE V3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet
+Classifier: Topic :: Multimedia :: Image
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Terminals
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+License-File: LICENSE

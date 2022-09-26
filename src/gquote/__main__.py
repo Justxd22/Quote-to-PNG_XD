@@ -3,8 +3,8 @@ except: print("pillow not found, use pip to install")
 from textwrap import wrap as wr
 from requests import get
 from io import BytesIO
-import json
-
+import json, os
+path = os.path.dirname(__file__)
 
 class gquote:
     def __init__(self, base = None, headers = None, proxy = None, output = True, format = "png", fonts = None):
@@ -18,9 +18,9 @@ class gquote:
                 if "." in output: self.output = output
                 else: raise ValueError("output path should include output format e.g: /home/xd/quote.png")
             else: self.output = "./quote.png"
-        self.fonts = ["./fonts/Barkentina.ttf", "./fonts/Ubuntu-Italic.ttf"]
+        self.fonts = [f"{path}/fonts/Barkentina.ttf", f"{path}/fonts/Ubuntu-Italic.ttf"]
         if fonts and type(fonts) is list and len(fonts) >= 2: self.fonts = fonts
-        
+
     def run(self):
         tquote = get(self.base, headers=self.headers, proxies=self.proxy)
         if tquote.status_code != 200:
@@ -56,6 +56,6 @@ class gquote:
             out = BytesIO()
             im.save(out, format=self.format, quality=100)
             return out
-        
+
         print('saved to ', self.output)
         return self.output
