@@ -1,8 +1,7 @@
 # Gquote
 
-Using zen.io api this libary is able to generate  
-Quote images using pillow,  
-Detects quote length and adjust text size accordingly.
+Using zen.io api this libary is able to generate Quote images  
+using pillow, Detects quote length and adjust text size accordingly.  
 
 <img src="./todayquote.png" width="360" height="640" alt="example"/>
 
@@ -33,7 +32,7 @@ image = gquote(proxy={"https":"127.0.0.1:8080"}).run()
 ### Change output path or format
 
 Pass output format as name + .png, .jpg, .jpeg  
-Check pillow suportted formats for more  
+Check <a href="https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html">pillow supported image formats for more</a>  
 ```py
 from gquote import gquote
 
@@ -72,7 +71,7 @@ image = gquote(base="https://yourapiofchoice.io/api/quote", headers={'Content-Ty
 
 You can pass fonts path of your choice,  
 ttf and otf formats are supported,  
-Check pillow docs for more supported formats,  
+Check <a href="https://pillow.readthedocs.io/en/stable/reference/ImageFont.html">pillow docs for more supported formats,</a>  
 You have to pass list of two fonts to be used,  
 one for the quote, other for the author text.  
 ```py
