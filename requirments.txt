@@ -1,0 +1,4 @@
+pillow
+textwrap
+requests
+
