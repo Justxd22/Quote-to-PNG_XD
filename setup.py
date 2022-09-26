@@ -1,8 +1,13 @@
 from setuptools import setup
+import codecs, os
+
+here = os.path.abspath(os.path.dirname(__file__))
+with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
+     long_description = "\n" + fh.read()
 
 setup(
     name='gquote',
-    version='1.0.0',
+    version='1.0.1',
     install_requires=['pillow', 'requests'],
     include_package_data=True,
     author="Justxd22",
@@ -16,19 +21,21 @@ setup(
         "Intended Audience :: Developers",
         "Natural Language :: English",
         "Operating System :: OS Independent",
-        "License :: OSI Approved :: GNU GENERAL PUBLIC LICENSE V3",
+        "License :: OSI Approved :: GNU Affero General Public License v3",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python",
         "Topic :: Internet",
-        "Topic :: Multimedia :: Image",
+        "Topic :: Multimedia :: Graphics",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Terminals",
         "Topic :: Utilities",
     ],
     description=("Generate Beautiful quote images"),
+    long_description_content_type="text/markdown",
+    long_description=long_description,
     zip_safe=True,
     python_requires=">=3.6",
     project_urls={"Github": "https://github.com/justxd22/gquote"},

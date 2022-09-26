@@ -3,7 +3,7 @@
 Using zen.io api this libary is able to generate Quote images  
 using pillow, Detects quote length and adjust text size accordingly.  
 
-<img src="./todayquote.png" width="360" height="640" alt="example"/>
+<img src="https://raw.githubusercontent.com/Justxd22/Quote-to-PNG_XD/main/todayquote.png" width="360" height="640" alt="example"/>
 
 ## Install
 
