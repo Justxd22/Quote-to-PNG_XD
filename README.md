@@ -3,7 +3,7 @@
 Using zen.io api this libary is able to generate Quote images  
 using pillow, Detects quote length and adjust text size accordingly.  
 
-<img src="./todayquote.png" width="360" height="640" alt="example"/>
+<img src="https://raw.githubusercontent.com/Justxd22/Quote-to-PNG_XD/main/todayquote.png" width="360" height="640" alt="example"/>
 
 ## Install
 
@@ -27,6 +27,21 @@ pass requests proxy format `"protocol" : "address"`
 from gquote import gquote
 
 image = gquote(proxy={"https":"127.0.0.1:8080"}).run()
+```
+
+### Change image shape/size
+
+You can choose between two shapes portrait, or box size  
+```py
+from gquote import gquote
+
+image = gquote(shape="box").run() # outputs 1080x1350
+```
+Or  
+```py
+from gquote import gquote
+
+image = gquote(shape="portrait").run() # outputs 1080x1920
 ```
 
 ### Change output path or format
