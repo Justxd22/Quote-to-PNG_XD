@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: gquote
-Version: 1.0.2
+Version: 1.0.3
 Summary: Generate Beautiful quote images
 Home-page: https://github.com/justxd22/gquote
 Author: Justxd22
@@ -58,6 +58,21 @@ pass requests proxy format `"protocol" : "address"`
 from gquote import gquote
 
 image = gquote(proxy={"https":"127.0.0.1:8080"}).run()
+```
+
+### Change image shape/size
+
+You can choose between two shapes portrait, or box size  
+```py
+from gquote import gquote
+
+image = gquote(shape="box").run() # outputs 1080x1350
+```
+Or  
+```py
+from gquote import gquote
+
+image = gquote(shape="portrait").run() # outputs 1080x1920
 ```
 
 ### Change output path or format

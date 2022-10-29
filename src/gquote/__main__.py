@@ -1,5 +1,5 @@
 try: from PIL import Image, ImageFont, ImageDraw
-except: print("pillow not found, use pip to install")
+except: print("pillow not found, use pip to install\n  pip install pillow")
 from textwrap import wrap as wr
 from requests import get
 from io import BytesIO
@@ -14,7 +14,7 @@ class gquote:
         self.format = format
         self.output = False
         self.shape  = shape
-        self.shapes = {"box": [(1080, 1350), 200], "portrait": [(1080, 1920), 400]}
+        self.shapes = {"box": [(1080, 1350), 20], "portrait": [(1080, 1920), 18]}
         if not self.shape in self.shapes: raise ValueError("box and portrait shapes are only available")
         if output:
             if type(output) is str:
@@ -37,15 +37,30 @@ class gquote:
         self.author = "~ " + tquote[0]['a'] + " ~"
         # leave these
         self.quote  = "“" + quote + "”"
-        wquote = wr(self.quote, width=18)
+        # bwidth is text width on every line
+        # wquote is list of text divided on lines
+        # len(wquote) gives you no. lines
+        bwidth = self.shapes[self.shape][1]
+        wquote = wr(self.quote, width=bwidth)
+        if len(wquote) > 7:
+           while len(wquote) > 7:
+                 bwidth += 1
+                 wquote = wr(self.quote, width=bwidth)
         # new 16:9 image
         im   = Image.new("RGB", self.shapes[self.shape][0])
         draw = ImageDraw.Draw(im)
         # load fonts
-        font  = ImageFont.truetype(self.fonts[0], 100)
+        fontsize = 100 if bwidth == 18 else 100 - bwidth
+        font  = ImageFont.truetype(self.fonts[0], fontsize)
         sfont = ImageFont.truetype(self.fonts[1], 40)
-        # try to center text
-        padding = 50; ch = self.shapes[self.shape][1];
+        # try to center text horz/vertical
+        # padding is dist. between each line
+        padding = 50;
+        # determine all lines height
+        w, h = draw.textsize('TEST', font=font)
+        totalH = (h*len(wquote))+(padding*len(wquote))+120
+        ch = (self.shapes[self.shape][0][1] - totalH) / 2
+        print(totalH, h, self.shapes[self.shape][0][1], ch)
         for i in wquote:
             w, h = draw.textsize(i, font=font)
             draw.text( ( (1080-w)/2, ch), i, font=font)

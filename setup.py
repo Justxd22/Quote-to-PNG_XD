@@ -7,7 +7,7 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
 
 setup(
     name='gquote',
-    version='1.0.2',
+    version='1.0.3',
     install_requires=['pillow', 'requests'],
     include_package_data=True,
     author="Justxd22",
