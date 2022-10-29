@@ -60,7 +60,6 @@ class gquote:
         w, h = draw.textsize('TEST', font=font)
         totalH = (h*len(wquote))+(padding*len(wquote))+120
         ch = (self.shapes[self.shape][0][1] - totalH) / 2
-        print(totalH, h, self.shapes[self.shape][0][1], ch)
         for i in wquote:
             w, h = draw.textsize(i, font=font)
             draw.text( ( (1080-w)/2, ch), i, font=font)
