@@ -29,6 +29,26 @@ from gquote import gquote
 image = gquote(proxy={"https":"127.0.0.1:8080"}).run()
 ```
 
+### Custom Background with Text Shadow
+
+You can use custom background, Optionally pass Color from your background  
+It will be inverted and used as text shadow, So text can be easily read,  
+Note that Custom Backround Sizes allowed: 1080x1920, 1080x1350
+Color Format allowed: HEX, RGB
+```py
+from gquote import gquote
+
+image = gquote(background="/home/xd/wqfdir.jpg", color="#ff00dd").run()
+```
+Or  
+```py
+from urllib.request import urlretrieve
+from gquote import gquote
+
+background = urlretrieve('https://i.imgur.com/7pfR6Ua.png')[0]
+image = gquote(background=background, color=(0,0,0)).run()
+```
+
 ### Change image shape/size
 
 You can choose between two shapes portrait, or box size  
