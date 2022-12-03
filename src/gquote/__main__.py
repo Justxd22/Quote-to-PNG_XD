@@ -14,11 +14,11 @@ class gquote:
         self.format = format
         self.output = False
         self.backg  = background
-        self.color  = inverse(color) if color else None
         self.shape  = shape
         self.shapes = {"box": [(1080, 1350), 20], "portrait": [(1080, 1920), 18]}
         try: self.shape = self.shapes[self.shape]
         except Exception as e: raise ValueError("box and portrait shapes are only available")
+        self.color, self.tcolor = inverse(color) if color else ("#000000", "#FFFFFF")
         if output:
             if type(output) is str:
                 if "." in output: self.output = output
@@ -61,7 +61,8 @@ class gquote:
         draw = ImageDraw.Draw(im)
         # load fonts
         fontsize = 100 if bwidth == 18 else 100 - bwidth
-        font  = ImageFont.truetype(self.fonts[0], fontsize)
+        # Font used Doesn't look good in bright Backgrounds 000=Black
+        font  = ImageFont.truetype(self.fonts[1] if "000" in self.tcolor else self.fonts[0], fontsize)
         sfont = ImageFont.truetype(self.fonts[1], 40)
         # try to center text horz/vertical
         # padding is dist. between each line
@@ -72,11 +73,11 @@ class gquote:
         ch = (self.shape[0][1] - totalH) / 2
         for i in wquote:
             w, h = draw.textsize(i, font=font)
-            draw.text( ( (1080-w)/2, ch), i, font=font, stroke_width=5 if self.backg else None, stroke_fill=self.color if self.backg else None)
+            draw.text( ( (1080-w)/2, ch), i, fill=self.tcolor, font=font, stroke_width=5 if self.backg else None, stroke_fill=self.color if self.backg else None)
             ch += h + padding
         # finally draw author with diffrent font
         w, h = draw.textsize(self.author, font=sfont)
-        draw.text( ( (1080-w)/2, ch+80), self.author, font=sfont, stroke_width=5 if self.backg else None, stroke_fill=self.color if self.backg else None)
+        draw.text( ( (1080-w)/2, ch+80), self.author, fill=self.tcolor, font=sfont, stroke_width=5 if self.backg else None, stroke_fill=self.color if self.backg else None)
         # export
         if self.output: im.save(self.output)
         else: # export to memory
@@ -88,9 +89,13 @@ class gquote:
         return self.output
 
 def inverse(color):
+    #* i commented inverse code as i don't need it
+    #* might be useful later tho
     if len(color) == 3: # for RGB format
-        c = [255-i for i in color]
-        c = '#' + "".join(["{:02x}".format(i) for i in c])
+        #*c = [255-i for i in color]
+        #*c = '#' + "".join(["{:02x}".format(i) for i in c])
+        w = "#FFFFFF"
+        if ((color[0]*0.299) + (color[1]*0.587) + (color[2]*0.114)) >= 128: w = "#000000"
     else: # for HEX format
         # first detect '#' and remove it
         c = color.replace("#", "")
@@ -98,20 +103,21 @@ def inverse(color):
         c = (c[0:2], c[2:4], c[4:6])
         # convert to rgb
         c = [int(i, base=16) for i in c]
+        ### White/Black Acorrding to each color intense ### 
+        w = "#FFFFFF"
+        if ((c[0]*0.299) + (c[1]*0.587) + (c[2]*0.114)) >= 128: w = "#000000"
+        ### https://stackoverflow.com/a/3943023     LOL ###
+
         # invert rgb colors
-        c = [255-i for i in c]
+        #*c = [255-i for i in c]
         # convert rgb back to hex
-        c = ["{:02x}".format(i) for i in c]
+        #*c = ["{:02x}".format(i) for i in c]
         # join results
-        c = '#' + "".join(c)
+        #*c = '#' + "".join(c)
+    
 
     # don't use white as border color
-    if c == "#ffffff": c = "#757575"
-    if c == "#000000": c = "#3d3d3d"
-    return c
+    #*if c == "#ffffff": c = "#757575"
+    #*if c == "#000000": c = "#3d3d3d"
 
-
-
-
-
-
+    return color, w

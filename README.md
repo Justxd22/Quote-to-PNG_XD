@@ -32,9 +32,11 @@ image = gquote(proxy={"https":"127.0.0.1:8080"}).run()
 ### Custom Background with Text Shadow
 
 You can use custom background, Optionally pass Color from your background  
-It will be inverted and used as text shadow, So text can be easily read,  
-Note that Custom Backround Sizes allowed: 1080x1920, 1080x1350
-Color Format allowed: HEX, RGB
+It will be used as text shadow, So text can be easily read,  
+Also it will be used to calc background Intensty,  
+Results in Text color From a contrast equation  
+Note that Custom Backround Sizes allowed: 1080x1920, 1080x1350   
+Color Format allowed: HEX, RGB  
 ```py
 from gquote import gquote
 
